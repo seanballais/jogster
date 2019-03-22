@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/jogster.iml" filepath="$PROJECT_DIR$/.idea/jogster.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jogster.iml" filepath="$PROJECT_DIR$/jogster.iml" />
+      <module fileurl="file://$PROJECT_DIR$/android/jogster_android.iml" filepath="$PROJECT_DIR$/android/jogster_android.iml" />
     </modules>
   </component>
 </project>

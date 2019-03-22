@@ -1,4 +1,4 @@
-package com.seanballais.jogster;
+package com.example.jogster;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;
