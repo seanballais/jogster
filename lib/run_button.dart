@@ -1,35 +1,26 @@
 import 'package:flutter/material.dart';
 
-class RunButton extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() {
-    return new RunButtonState();
-  }
-}
+class RunButton extends StatelessWidget {
+  RunButton({Key key, this.isRunning: false, @required this.onChanged})
+    : super(key:key);
 
-class RunButtonState extends State<RunButton> {
-  int txtIdx = 0;
-  var btnTxt = ['Start Running', 'Stop Running'];
+  final bool isRunning;
+  final ValueChanged<bool> onChanged;
 
-  void switchText() {
-    setState(() {
-      txtIdx = (++txtIdx) % 2;
-    });
+  void _handlePress() {
+    onChanged(!isRunning);
   }
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      flex: 2,
+      flex: 1,
       child: Padding(
-        padding: EdgeInsets.all(20.0),
+        padding: EdgeInsets.all(10.0),
         child: RaisedButton(
-          child: Text(
-            btnTxt[txtIdx],
-            style: TextStyle(fontSize: 24.0),
-          ),
+          onPressed: _handlePress,
+          child: Text(isRunning ? 'Stop Jog' : 'Start Jog', style: TextStyle(fontSize: 24.0)),
           elevation: 3.0,
-          onPressed: switchText,
         ),
       ),
     );
