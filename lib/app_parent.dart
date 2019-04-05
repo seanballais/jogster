@@ -18,7 +18,7 @@ class AppParentState extends State<AppParent> with SingleTickerProviderStateMixi
   var combinations = [[1, 1], [3, 1], [5, 3], [10, 3], [15, 5], [25, 7], [30, 10]];
 
   Timer _timer;
-  int _timeLeft;
+  int _timeLeft = 0;
 
   AnimationController _animController;
   Animation _colorTween;
@@ -41,25 +41,20 @@ class AppParentState extends State<AppParent> with SingleTickerProviderStateMixi
       animation: _colorTween,
       builder: (context, child) => Scaffold(
         backgroundColor: _colorTween.value,
-        body: Center(
-          child: SwipeDetector(
-            child: SafeArea(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.max,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: <Widget>[
-                  TimerCounter(timeLeft: _timeLeft),
-                  TimeSetter(isRunning: _isRunning, time: combinations[combIdx]),
-                  RunButton(isRunning: _isRunning, onChanged: _handleRunBtnChanged),
-                ],
-              ),
-            ),
-            onSwipeLeft: _nextComb,
-            onSwipeRight: _prevComb,
+        body: Center(child: SwipeDetector(onSwipeLeft: _nextComb, onSwipeRight: _prevComb,
+          child: SafeArea(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.max,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                TimerCounter(timeLeft: _timeLeft),
+                TimeSetter(isRunning: _isRunning, time: combinations[combIdx]),
+                RunButton(isRunning: _isRunning, onChanged: _handleRunBtnChanged),
+              ]),
+            )),
           ),
         ),
-      ),
     );
   }
 
@@ -76,11 +71,8 @@ class AppParentState extends State<AppParent> with SingleTickerProviderStateMixi
           _timeLeft = combinations[combIdx][_isRunCycle ? 1 : 0] * 60;
           _animController.duration = new Duration(seconds: _timeLeft);
 
-          if (_isRunCycle) {
-            _animController.forward();
-          } else {
-            _animController.reverse();
-          }
+          if (_isRunCycle) _animController.forward();
+          else _animController.reverse();
         } else {
           _timeLeft--;
         }
