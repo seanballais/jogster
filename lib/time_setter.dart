@@ -14,7 +14,7 @@ class TimeSetter extends StatelessWidget {
     List<Widget> widgets = [
       Text(
         'Shake to ${!isRunning ? 'start' : 'stop'}.',
-        textAlign: TextAlign.center, style: TextStyle(fontSize: 11.0)
+        textAlign: TextAlign.center
       ),
     ];
 
