@@ -12,8 +12,8 @@ class AppParent extends StatefulWidget {
 class AppParentState extends State<AppParent> with SingleTickerProviderStateMixin {
   bool _isRunning = false;
   bool _isRunCycle = false;
-  int combIdx = 0;
-  var combinations = [[1, 1], [3, 1], [5, 3], [10, 3], [15, 5], [25, 7], [30, 10]];
+  int _combIdx = 0;
+  var _combs = [[1, 1], [3, 1], [5, 3], [10, 3], [15, 5], [25, 7], [30, 10]];
 
   Timer _timer;
   int _timeLeft = 0;
@@ -29,7 +29,7 @@ class AppParentState extends State<AppParent> with SingleTickerProviderStateMixi
       vsync: this,
       duration: Duration(seconds: 10)
     );
-    _colorTween = ColorTween(begin: Color.white, end: Color(0xFFFFF748))
+    _colorTween = ColorTween(begin: Colors.white, end: Color(0xFFFFF748))
       .animate(_animController);
 
     super.initState();
@@ -48,7 +48,7 @@ class AppParentState extends State<AppParent> with SingleTickerProviderStateMixi
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
                 TimerCounter(timeLeft: _timeLeft),
-                TimeSetter(isRunning: _isRunning, combs: combinations, onChanged: _setInterval, dropValue: combIdx),
+                TimeSetter(isRunning: _isRunning, combs: _combs, onChanged: _setInterval, dropValue: _combIdx),
               ]
             ),
           ),
@@ -68,11 +68,14 @@ class AppParentState extends State<AppParent> with SingleTickerProviderStateMixi
         if (_timeLeft == 0) {
           Vibrate.vibrate();
           _isRunCycle = !_isRunCycle;
-          _timeLeft = combinations[combIdx][_isRunCycle ? 1 : 0] * 60;
+          _timeLeft = _combs[_combIdx][_isRunCycle ? 1 : 0] * 60;
           _animController.duration = new Duration(seconds: _timeLeft);
 
-          if (_isRunCycle) _animController.forward();
-          else _animController.reverse();
+          if (_isRunCycle) {
+            _animController.forward();
+          } else {
+            _animController.reverse();
+          }
         } else {
           _timeLeft--;
         }
@@ -87,7 +90,7 @@ class AppParentState extends State<AppParent> with SingleTickerProviderStateMixi
       Vibrate.vibrate();
       if (_isRunning) {
         _isRunCycle = true;
-        _timeLeft = combinations[combIdx][0] * 60;
+        _timeLeft = _combs[_combIdx][0] * 60;
         _animController.duration = new Duration(seconds: _timeLeft);
         _animController.forward();
         startTimer();
@@ -101,7 +104,7 @@ class AppParentState extends State<AppParent> with SingleTickerProviderStateMixi
 
   void _setInterval(int idx) {
     setState(() {
-      combIdx = idx;
+      _combIdx = idx;
     });
   }
 }

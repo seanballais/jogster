@@ -12,9 +12,7 @@ class TimerCounter extends StatelessWidget {
     return Expanded(
       flex: 4,
       child: Center(
-        child: Text(
-          '$minutes:$seconds',
-          textAlign: TextAlign.center, style: TextStyle(fontSize: 81.0, weight: 100)),
+        child: Text('$minutes:$seconds', textAlign: TextAlign.center, style: TextStyle(fontSize: 81.0, fontWeight: FontWeight.w300)),
       ),
     );
   }
