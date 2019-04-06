@@ -12,7 +12,10 @@ class TimeSetter extends StatelessWidget {
 
   @override Widget build(BuildContext context) {
     List<Widget> widgets = [
-      Text('Shake to start/stop.', textAlign: TextAlign.center, style: TextStyle(fontSize: 11.0)),
+      Text(
+        'Shake to ${!isRunning ? 'start' : 'stop'}.',
+        textAlign: TextAlign.center, style: TextStyle(fontSize: 11.0)
+      ),
     ];
 
     if (!isRunning) {

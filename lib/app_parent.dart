@@ -26,12 +26,8 @@ class AppParentState extends State<AppParent>
 
   @override void initState() {
     _detector = ShakeDetector.autoStart(onPhoneShake: () { _handleShake(); });
-    _animController = AnimationController(
-      vsync: this,
-      duration: Duration(seconds: 10)
-    );
-    _colorTween = ColorTween(begin: Colors.white, end: Color(0xFFFFF748))
-      .animate(_animController);
+    _animController = AnimationController(vsync: this, duration: Duration(seconds: 10));
+    _colorTween = ColorTween(begin: Colors.white, end: Color(0xFFFFF748)).animate(_animController);
 
     super.initState();
   }
