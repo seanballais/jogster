@@ -19,7 +19,7 @@ class TimeSetter extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: !isRunning ? <Widget>[
           Padding(
-            padding: EdgeInsets.all(7.0),
+            padding: EdgeInsets.all(20.0),
             child: DropdownButton<int>(
               value: dropValue,
               items: Iterable<int>.generate(combs.length).toList().map((idx) {
