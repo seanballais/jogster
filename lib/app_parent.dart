@@ -9,7 +9,8 @@ class AppParent extends StatefulWidget {
   @override AppParentState createState() => AppParentState();
 }
 
-class AppParentState extends State<AppParent> with SingleTickerProviderStateMixin {
+class AppParentState extends State<AppParent>
+    with SingleTickerProviderStateMixin {
   bool _isRunning = false;
   bool _isRunCycle = false;
   int _combIdx = 0;
@@ -64,23 +65,22 @@ class AppParentState extends State<AppParent> with SingleTickerProviderStateMixi
   }
 
   void startTimer() {
-    _timer = new Timer.periodic(const Duration(seconds: 1), (Timer t) => setState(() {
-        if (_timeLeft == 0) {
-          Vibrate.vibrate();
-          _isRunCycle = !_isRunCycle;
-          _timeLeft = _combs[_combIdx][_isRunCycle ? 1 : 0] * 60;
-          _animController.duration = new Duration(seconds: _timeLeft);
+    _timer = Timer.periodic(Duration(seconds: 1), (Timer t) => setState(() {
+      if (_timeLeft == 0) {
+        Vibrate.vibrate();
+        _isRunCycle = !_isRunCycle;
+        _timeLeft = _combs[_combIdx][_isRunCycle ? 1 : 0] * 60;
+        _animController.duration = Duration(seconds: _timeLeft);
 
-          if (_isRunCycle) {
-            _animController.forward();
-          } else {
-            _animController.reverse();
-          }
+        if (_isRunCycle) {
+          _animController.forward();
         } else {
-          _timeLeft--;
+          _animController.reverse();
         }
-      })
-    );
+      } else {
+        _timeLeft--;
+      }
+    }));
   }
 
   void _handleShake() {
@@ -91,7 +91,7 @@ class AppParentState extends State<AppParent> with SingleTickerProviderStateMixi
       if (_isRunning) {
         _isRunCycle = true;
         _timeLeft = _combs[_combIdx][0] * 60;
-        _animController.duration = new Duration(seconds: _timeLeft);
+        _animController.duration = Duration(seconds: _timeLeft);
         _animController.forward();
         startTimer();
       } else {
