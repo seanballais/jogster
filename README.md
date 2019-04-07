@@ -18,6 +18,8 @@ Due to the 5KB (5,120 bytes) limitation on the code size (this project has a cod
 
 When running and using the app, the phone should not be suddenly shook and is recommended to remain in a stationary position as much as possible.
 
+The app is only guaranteed to run on Android devices. It may still run well on iOS devices but it is unconfirmed due to the lack of testing. When using a tablet, the UI may also not look as good as when viewed using a smartphone.
+
 ### Source Code
 
 The code is licensed under the MPL 2.0 license and can be viewed in [GitHub](https://github.com/seanballais/jogster).
