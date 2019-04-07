@@ -60,25 +60,6 @@ class AppParentState extends State<AppParent>
     super.dispose();
   }
 
-  void startTimer() {
-    _timer = Timer.periodic(Duration(seconds: 1), (Timer t) => setState(() {
-      if (_timeLeft == 0) {
-        Vibrate.vibrate();
-        _isRunCycle = !_isRunCycle;
-        _timeLeft = _combs[_combIdx][_isRunCycle ? 1 : 0] * 60;
-        _animController.duration = Duration(seconds: _timeLeft);
-
-        if (_isRunCycle) {
-          _animController.forward();
-        } else {
-          _animController.reverse();
-        }
-      } else {
-        _timeLeft--;
-      }
-    }));
-  }
-
   void _handleShake() {
     setState(() {
       _isRunning = !_isRunning;
@@ -102,6 +83,25 @@ class AppParentState extends State<AppParent>
     setState(() {
       _combIdx = idx;
     });
+  }
+
+  void startTimer() {
+    _timer = Timer.periodic(Duration(seconds: 1), (Timer t) => setState(() {
+      if (_timeLeft == 0) {
+        Vibrate.vibrate();
+        _isRunCycle = !_isRunCycle;
+        _timeLeft = _combs[_combIdx][_isRunCycle ? 1 : 0] * 60;
+        _animController.duration = Duration(seconds: _timeLeft);
+
+        if (_isRunCycle) {
+          _animController.forward();
+        } else {
+          _animController.reverse();
+        }
+      } else {
+        _timeLeft--;
+      }
+    }));
   }
 }
 
