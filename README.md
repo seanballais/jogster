@@ -14,7 +14,7 @@ The phone will do a long vibrate (more or less for 1 second) when shaken to noti
 
 ### Limitations and Special Instructions
 
-Due to the 5KB (5,120 bytes) limitation on the code size (this project has a code size of 5,083 bytes), the app can only be run when it is on the foreground (i.e. the active app on the phone). As such, the app cannot be used when the phone display is off.
+Due to the 5KB (5,120 bytes) limitation on the code size (this project has a code size of 5,083 bytes), the app does not include functionality that allows it to run in the background. As such, it can only be run when it is on the foreground (i.e. the currently used app on the phone) and when the phone display is on.
 
 When running and using the app, the phone should not be suddenly shook and is recommended to remain in a stationary position as much as possible.
 
