@@ -70,7 +70,7 @@ class AppParentState extends State<AppParent>
         _timeLeft = _combs[_combIdx][0] * 60;
         _animController.duration = Duration(seconds: _timeLeft);
         _animController.forward();
-        startTimer();
+        _startTimer();
       } else {
         _timer.cancel();
         _animController.reset();
@@ -85,7 +85,7 @@ class AppParentState extends State<AppParent>
     });
   }
 
-  void startTimer() {
+  void _startTimer() {
     _timer = Timer.periodic(Duration(seconds: 1), (Timer t) => setState(() {
       if (_timeLeft == 0) {
         Vibrate.vibrate();
